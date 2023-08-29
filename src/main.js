@@ -30,3 +30,29 @@ const juanita = new Student (
     ],
 )
 
+// Prototipos con la sintaxis de clases
+
+class Student2 {
+    constructor ({
+        name, 
+        age, 
+        cursosAProbados,
+    })   {
+        this.name = name;
+        this.age = age;
+        this.cursosAProbados = cursosAProbados;
+    }
+    aprobarCurso (nuevoCursito) {
+        this.cursosAProbados.push(nuevoCursito); 
+    }
+}
+
+const miguelito = new Student2({
+    name:'Miguel',
+    age: 28,
+    cursosAProbados: [
+        'Curso de Ánalisis de Negocios para ciencia de Datos',
+        'Curso de principios de visualización de Datos para BI'
+    ]
+}
+);
