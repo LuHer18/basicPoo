@@ -12,6 +12,8 @@ const natalia = {
 // Hacer que natalia apruebe otro curso
 
 /* natalia.cursosAprobados.push('Curso de Responsive Desing') */
+
+//Prototipos 
 function Student (name, age, cursosAProbados){
     this.name = name;
     this.age = age;
