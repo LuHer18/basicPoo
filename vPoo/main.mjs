@@ -78,6 +78,32 @@ const miguelit01 = {
 
 // objetos usando Prototipos con la sintaxis de Class
 
+function videoPlay(id){
+    const urlSecret = 'htt://platziultrasecretomasquelanasa.com/' + id;
+    console.log('Se esta reproduciendo desde la URL: ' + urlSecret);
+}
+function videoStop(id){
+    const urlSecret = 'htt://platziultrasecretomasquelanasa.com/' + id;
+    console.log('Pausamos la URL: ' + urlSecret);
+}
+
+export class PlatziClass {
+    constructor({
+        name,
+        videoID,
+    }) {
+        this.name = name;
+        this.videoID = videoID;
+    }
+    reproducir(){
+        videoPlay(this.videoID);
+    }
+    pausar(){
+        videoStop(this.videoID);
+    }
+
+}
+
 class Course {
     constructor({
         name,
