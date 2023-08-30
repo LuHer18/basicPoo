@@ -87,7 +87,7 @@ function videoStop(id){
     console.log('Pausamos la URL: ' + urlSecret);
 }
 
-export class PlatziClass {
+class PlatziClass {
     constructor({
         name,
         videoID,
@@ -108,9 +108,13 @@ class Course {
     constructor({
         name,
         classes = [],
+        isFree = false,
+        lang = "spanish",
     }) {
         this._name = name;
         this.classes = classes;
+        this.isFree = isFree;
+        this.lang = lang;
     }
     get name() {
         return this._name;
@@ -127,6 +131,7 @@ class Course {
 
 const cursoProgBasica = new Course ({
     name: "Curso gratis de programación básica",
+    isFree: true,
 
 })
 const cursoDefHtml = new Course ({
@@ -136,6 +141,7 @@ const cursoDefHtml = new Course ({
 
 const cursoPracHtml = new Course ({
     name: "Curso practico de HTML y CSS",
+    lang: "english",
 
 })
 const cursoDtBusiness = new Course ({
@@ -247,7 +253,41 @@ class Student {
     }
 }
 
-const luis2 = new Student( {
+class FreeStudent extends Student {
+    constructor(props){
+        super(props);
+    }
+
+    approvedCourse(newCourse) {
+        if (newCourse.isFree){
+            this.aprovedCourses.push(newCourse);
+        } else{
+            console.warn("Lo siento, " + this.name + ", solo puedes tomar cursos gratis");
+        }
+    }
+}
+class BasicStudent extends Student {
+    constructor(props){
+        super(props);
+    }
+    approvedCourse(newCourse) {
+        if (newCourse.lang !== "english"){
+            this.aprovedCourses.push(newCourse);
+        } else{
+            console.warn("Lo siento, " + this.name + ", solo puedes tomar cursos en español");
+        }
+    }
+}
+class ExpertStudent extends Student {
+    constructor(props){
+        super(props);
+    }
+    aprovedCourse(newCourse) {
+       this.aprovedCourses.push(newCourse);
+    }
+}
+
+const luis = new FreeStudent( {
     name: 'Luis Herrera',
     userName: 'luher',
     email: 'luis1818.lh@gmail.com',
@@ -258,4 +298,17 @@ const luis2 = new Student( {
     ],
 
 })
+const miguelito = new BasicStudent( {
+    name: 'Miguelito',
+    userName: 'miguelitofeliz',
+    points: 100,
+    twitter: 'miguelitofeliz',
+    instagram: 'miguelitofeliz',
+        learningPaths: [
+        dWeb, 
+        dSciences
+    ],
+
+})
+
 
