@@ -78,6 +78,26 @@ const miguelit01 = {
 
 // objetos usando Prototipos con la sintaxis de Class
 
+class Comment {
+    constructor({
+        content,
+        studentName,
+        studentRol = 'estudiante',
+
+    }) {
+        this.content = content;
+        this.studentName = studentName;
+        this.studentRol = studentRol;
+        this.likes = 0;
+    }
+
+    publicar(){
+        console.log(this.studentName + ' (' + this.studentRol + ')');
+        console.log(this.likes + ' likes');
+        console.log(this.content);
+    }
+}
+
 function videoPlay(id){
     const urlSecret = 'htt://platziultrasecretomasquelanasa.com/' + id;
     console.log('Se esta reproduciendo desde la URL: ' + urlSecret);
@@ -251,6 +271,15 @@ class Student {
     set userName (nuevoUserName){
         this._userName = nuevoUserName;
     }
+    publicarComentario(CommentContent){
+        const comment = new Comment ({
+            content: CommentContent,
+            studentName: this._name,
+            
+        })
+        comment.publicar();
+
+    }
 }
 
 class FreeStudent extends Student {
@@ -287,6 +316,26 @@ class ExpertStudent extends Student {
     }
 }
 
+class TeacherStudent extends Student{
+    constructor(props){
+        super(props);
+    }
+    aprovedCourse(newCourse) {
+        this.aprovedCourses.push(newCourse);
+    }
+    publicarComentario(CommentContent){
+        const comment = new Comment ({
+            content: CommentContent,
+            studentName: this._name,
+            studentRol: "Profesor",
+            
+        })
+        comment.publicar();
+
+    }
+
+}
+
 const luis = new FreeStudent( {
     name: 'Luis Herrera',
     userName: 'luher',
@@ -298,6 +347,7 @@ const luis = new FreeStudent( {
     ],
 
 })
+
 const miguelito = new BasicStudent( {
     name: 'Miguelito',
     userName: 'miguelitofeliz',
@@ -310,5 +360,13 @@ const miguelito = new BasicStudent( {
     ],
 
 })
+
+const Freddy = new TeacherStudent( {
+    name: 'Freddy Vega',
+    userName: 'freddier.com',
+    email: 'f@gep.com',
+    instagram: 'freddiervega',
+   
+});
 
 
